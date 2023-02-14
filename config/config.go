@@ -8,15 +8,23 @@ import (
 )
 
 // Config func to get env value
-func Config(key string) string {
-    err := godotenv.Load(".env")
+func ConfigENV(key string, def string) string {
+	err := godotenv.Load(".env")
     if err != nil {
         fmt.Print("Error loading .env file")
 		return "nil"
 	}
-
-    return os.Getenv(key)
-}	
+	
+	val, ok := os.LookupEnv(key)
+	if !ok {
+		val = def
+	}
+	return val
+}
+// func Config(key string) string {
+    
+//     return os.Getenv(key)
+// }
 
 
 // func LoadConfigs() map[string]string {

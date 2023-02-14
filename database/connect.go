@@ -15,17 +15,17 @@ var DB *gorm.DB
 
 func ConnectDB() {
 	var err error
-
-	db_port, err := strconv.ParseUint(config.Config("DB_PORT"), 10, 32)
+	
+	db_port, err := strconv.ParseUint(config.ConfigENV("DB_PORT", "3000"), 10, 32)
 	helpers.CheckError(err, "")
 
 	// Connection URL to connect to Postgres Database
 	connectionString := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", 
-		config.Config("DB_HOST"), 
+		config.ConfigENV("DB_HOST", "localhost"), 
 		db_port, 
-		config.Config("DB_USER"), 
-		config.Config("DB_PASSWORD"), 
-		config.Config("DB_NAME"),
+		config.ConfigENV("DB_USER", "progres"), 
+		config.ConfigENV("DB_PASSWORD", "csnp332211"), 
+		config.ConfigENV("DB_NAME", "db_ituy"),
 	)
     
 	fmt.Println("connectionString = " + connectionString)
