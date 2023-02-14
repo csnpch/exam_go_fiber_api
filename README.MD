@@ -1,1 +1,1 @@
-# Golang Fiber for RESTful API Project "ITuy"  
+# Golang Fiber for RESTfulAPI Project "ITuy"  
