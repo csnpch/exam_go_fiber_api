@@ -3,8 +3,7 @@ package database
 import (
 	"fmt"
 	config "main/config"
-	model "main/internal/models"
-	"main/utils/helpers"
+	helpers "main/utils/helpers"
 	"strconv"
 
 	"gorm.io/driver/postgres"
@@ -33,12 +32,7 @@ func ConnectDB() {
 	DB, err = gorm.Open(postgres.Open(connectionString))
 	helpers.CheckError(err, "")
 
-	MigrateDB(DB)
+	migration(DB)
 
 	fmt.Println("Connected to Database :)")
-}
-
-func MigrateDB(DB *gorm.DB) {
-	DB.AutoMigrate(&model.Note{})
-    fmt.Println("Database Migrated")
 }

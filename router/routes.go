@@ -2,7 +2,6 @@ package routes
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/logger"
 
 	noteRoutes "main/internal/routes/noteRoutes"
 	userRoutes "main/internal/routes/userRoutes"
@@ -10,7 +9,7 @@ import (
 
 func SetupRoutes(app *fiber.App) {
 
-	api := app.Group("/api", logger.New())
+	api := app.Group("/api")
 	userRoutes.SetupRoutes(api)
 	noteRoutes.SetupRoutes(api)
 
