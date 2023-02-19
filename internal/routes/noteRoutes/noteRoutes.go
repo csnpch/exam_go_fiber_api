@@ -1,8 +1,9 @@
 package noteRoutes
 
 import (
-	// noteHandler "./main/noteHandler"
 	"github.com/gofiber/fiber/v2"
+
+	noteHandler "main/internal/handlers/noteHandler"
 )
 
 // func SetupRoutes(app *fiber.App) {
@@ -11,21 +12,15 @@ import (
 func SetupRoutes(router fiber.Router) {
 
 	note := router.Group("/note")
-	// Read all Notes
 	// note.Get("/", noteHandler.Get())
-	note.Get("/", GetNote)
+	note.Get("/", noteHandler.GetNote)
 	// Read one Note
-	note.Get("/:noteId", func(c *fiber.Ctx) error { return nil })
+	note.Get("/:noteId", noteHandler.GetNote)
 	// Create a Note
-	note.Post("/", func(c *fiber.Ctx) error { return nil })
+	note.Post("/", noteHandler.CreateNotes)
 	// Update one Note
-	note.Put("/:noteId", func(c *fiber.Ctx) error { return nil })
+	note.Put("/:noteId", noteHandler.UpdateNote)
 	// Delete one Note
-	note.Delete("/:noteId", func(c *fiber.Ctx) error { return nil })
+	note.Delete("/:noteId", noteHandler.DeleteNote)
 	 
 }
-
-func GetNote(c *fiber.Ctx) error {
-	return c.SendString("This note router")
-}
-

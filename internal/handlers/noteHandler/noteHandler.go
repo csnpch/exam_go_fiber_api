@@ -11,18 +11,18 @@ import (
 
 func GetNote(c *fiber.Ctx) error {
     db := database.DB
-    var note model.Note
+    var note []model.Note
 
     // Read the param noteId
-    id := c.Params("noteId")
+    // id := c.Params("noteId")
 
     // Find the note with the given Id
-    db.Find(&note, "id = ?", id)
+    db.Find(&note)
 
     // If no such note present return an error
-    if note.ID == uuid.Nil {
-        return c.Status(404).JSON(fiber.Map{"status": "error", "message": "No note present", "data": nil})
-    }
+    // if note.ID == uuid.Nil {
+    //     return c.Status(404).JSON(fiber.Map{"status": "error", "message": "No note present", "data": nil})
+    // }
 
     // Return the note with the Id
     return c.JSON(fiber.Map{"status": "success", "message": "Notes Found", "data": note})

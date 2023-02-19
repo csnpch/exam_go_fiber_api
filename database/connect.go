@@ -2,7 +2,8 @@ package database
 
 import (
 	"fmt"
-	"main/config"
+	config "main/config"
+	model "main/internal/models"
 	"main/utils/helpers"
 	"strconv"
 
@@ -32,5 +33,12 @@ func ConnectDB() {
 	DB, err = gorm.Open(postgres.Open(connectionString))
 	helpers.CheckError(err, "")
 
+	MigrateDB(DB)
+
 	fmt.Println("Connected to Database :)")
+}
+
+func MigrateDB(DB *gorm.DB) {
+	DB.AutoMigrate(&model.Note{})
+    fmt.Println("Database Migrated")
 }

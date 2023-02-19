@@ -1,8 +1,8 @@
 package model
 
 import (
-    "github.com/google/uuid"
-    "gorm.io/gorm"
+	"github.com/google/uuid"
+	"gorm.io/gorm"
 )
 
 type Note struct {
