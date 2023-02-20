@@ -2,8 +2,8 @@ package database
 
 import (
 	"fmt"
-	"main/config"
-	"main/utils/helpers"
+	config "main/config"
+	helpers "main/utils/helpers"
 	"strconv"
 
 	"gorm.io/driver/postgres"
@@ -31,6 +31,8 @@ func ConnectDB() {
 	fmt.Println("connectionString = " + connectionString)
 	DB, err = gorm.Open(postgres.Open(connectionString))
 	helpers.CheckError(err, "")
+
+	migration(DB)
 
 	fmt.Println("Connected to Database :)")
 }

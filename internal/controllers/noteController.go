@@ -1,4 +1,4 @@
-package noteHandler
+package controlelr
 
 import (
 	"github.com/gofiber/fiber/v2"
@@ -9,20 +9,12 @@ import (
 )
 
 
+
 func GetNote(c *fiber.Ctx) error {
     db := database.DB
-    var note model.Note
+    var note []model.Note
 
-    // Read the param noteId
-    id := c.Params("noteId")
-
-    // Find the note with the given Id
-    db.Find(&note, "id = ?", id)
-
-    // If no such note present return an error
-    if note.ID == uuid.Nil {
-        return c.Status(404).JSON(fiber.Map{"status": "error", "message": "No note present", "data": nil})
-    }
+    db.Find(&note)
 
     // Return the note with the Id
     return c.JSON(fiber.Map{"status": "success", "message": "Notes Found", "data": note})
@@ -54,11 +46,7 @@ func CreateNotes(c *fiber.Ctx) error {
 
 
 func UpdateNote(c *fiber.Ctx) error {
-    type updateNote struct {
-        Title    string `json:"title"`
-        SubTitle string `json:"sub_title"`
-        Text     string `json:"Text"`
-    }
+    
     db := database.DB
     var note model.Note
 
@@ -74,7 +62,7 @@ func UpdateNote(c *fiber.Ctx) error {
     }
 
     // Store the body containing the updated data and return error if encountered
-    var updateNoteData updateNote
+    var updateNoteData model.UpdateNote
     err := c.BodyParser(&updateNoteData)
     if err != nil {
         return c.Status(500).JSON(fiber.Map{"status": "error", "message": "Review your input", "data": err})

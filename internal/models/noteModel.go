@@ -1,8 +1,8 @@
 package model
 
 import (
-    "github.com/google/uuid"
-    "gorm.io/gorm"
+	"github.com/google/uuid"
+	"gorm.io/gorm"
 )
 
 type Note struct {
@@ -11,4 +11,11 @@ type Note struct {
     Title      string
     SubTitle   string
     Text       string
+}
+
+
+type UpdateNote struct {
+    Title    string `json:"title"`
+    SubTitle string `json:"sub_title"`
+    Text     string `json:"Text"`
 }
