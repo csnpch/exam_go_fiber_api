@@ -1,4 +1,4 @@
-package noteHandler
+package controlelr
 
 import (
 	"github.com/gofiber/fiber/v2"
@@ -7,6 +7,7 @@ import (
 	database "main/database"
 	model "main/internal/models"
 )
+
 
 
 func GetNote(c *fiber.Ctx) error {
@@ -61,7 +62,7 @@ func UpdateNote(c *fiber.Ctx) error {
     }
 
     // Store the body containing the updated data and return error if encountered
-    var updateNoteData updateNote
+    var updateNoteData model.UpdateNote
     err := c.BodyParser(&updateNoteData)
     if err != nil {
         return c.Status(500).JSON(fiber.Map{"status": "error", "message": "Review your input", "data": err})

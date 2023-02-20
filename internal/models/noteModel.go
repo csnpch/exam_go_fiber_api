@@ -14,7 +14,7 @@ type Note struct {
 }
 
 
-type updateNote struct {
+type UpdateNote struct {
     Title    string `json:"title"`
     SubTitle string `json:"sub_title"`
     Text     string `json:"Text"`

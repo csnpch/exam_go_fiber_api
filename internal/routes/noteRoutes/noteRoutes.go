@@ -3,7 +3,7 @@ package noteRoutes
 import (
 	"github.com/gofiber/fiber/v2"
 
-	noteHandler "main/internal/handlers/noteHandler"
+	noteController "main/internal/controllers"
 )
 
 // func SetupRoutes(app *fiber.App) {
@@ -13,10 +13,10 @@ func SetupRoutes(router fiber.Router) {
 
 	note := router.Group("/note")
 	// Get
-	note.Get("/", noteHandler.GetNote)
+	note.Get("/", noteController.GetNote)
 	// Read one Note
-	note.Get("/:noteId", noteHandler.GetNote)
+	note.Get("/:noteId", noteController.GetNote)
 	// Create a Note
-	note.Post("/", noteHandler.CreateNotes)
+	note.Post("/", noteController.CreateNotes)
 	 
 }
