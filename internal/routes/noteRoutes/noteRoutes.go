@@ -10,7 +10,8 @@ import (
 // func UserRouter (app *fiber.App) {
 
 func SetupRoutes(router fiber.Router) {
-
+	
+	// v1 := router.Group("v1")
 	note := router.Group("/note")
 	// Get
 	note.Get("/", noteController.GetNote)
