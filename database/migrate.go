@@ -1,10 +1,10 @@
 package database
 
 import (
-	"gorm.io/gorm"
 	"fmt"
 
-	
+	"gorm.io/gorm"
+
 	model "main/internal/models"
 )
 
